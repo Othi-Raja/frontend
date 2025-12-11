@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono ,DM_Serif_Display, Manrope} from "next/font/google";
+import { Geist, Geist_Mono ,DM_Serif_Display, Manrope,Inter} from "next/font/google";
 import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +10,11 @@ const dmSerif = DM_Serif_Display({
   style: "italic",
   subsets: ["latin"],
   variable: "--font-dm-serif",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 const manrope = Manrope({
   weight: "500",
@@ -32,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${dmSerif.variable} ${manrope.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dmSerif.variable} ${manrope.variable} ${inter.variable} antialiased`}
       >
         {children}
       </body>

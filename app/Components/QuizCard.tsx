@@ -8,6 +8,7 @@ import forwardArrow from '../asserts/arrow_forward.png'
 import backArrow from '../asserts/arrow_back.png'
 import QuestionCard from "./QuestionCard";
 import bestOfLuck from '../asserts/Group.png'
+import '../globals.css'
 import { AnimatePresence,motion } from "framer-motion";
 const questions = [
   {
@@ -61,7 +62,7 @@ export default function QuizCard() {
   };
   // Next Question
   const next = () => {
-    if (!selected[index]) return; // stop if no answer
+    if (!selected[index]) return;  
     if (index < questions.length - 1) {
       setIndex(index + 1);
     }
@@ -81,13 +82,23 @@ export default function QuizCard() {
       setSubmitted(true);
   };
   return (
-    <div className="relative bg-[#F4FDFF] rounded-[42px] p-5 border border-[#B3D9FF]/60 shadow-lg">
+    <div
+  className={`${submitted?'w-screen h-screen flex items-center justify-center':'w-[90%] max-w-[1600px] h-[90vh] m-4'}
+         rounded-[50px]
+         border-[0.72px] border-white
+         bg-[linear-gradient(112.86deg,rgba(255,255,255,0.4)_-6.68%,rgba(255,255,255,0.12)_45.63%,rgba(255,255,255,0.4)_103.45%)]
+         backdrop-blur-xl
+         shadow-[0_20px_60px_rgba(0,0,0,0.08)]
+         p-5
+         `}
+>
+    <div className={`relative ${!submitted ?'bg-[#F4FDFF] shadow-lg':'bg-transparent'} rounded-[42px] p-5 border border-[#B3D9FF]/60 `}>
   {!submitted && <div>
         {/* TITLE */}
       <h1 className="
       font-[90px]
-        font-var(--font-dm-serif) italic
-        text-[60px] tracking-[-4px] text-center
+         [font-family:var(--font-dm-serif)]
+        text-[60px] tracking-[-2px] text-center
         bg-linear-to-r from-[#15313D] to-[#3CABDA]
         text-transparent bg-clip-text
       ">
@@ -223,7 +234,7 @@ export default function QuizCard() {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.4, ease: "easeOut" }}
-        className="relative p-0"
+        className="relative p-0 "
       >
         {/* BEST OF LUCK BUBBLE */}
         <Image
@@ -241,7 +252,7 @@ export default function QuizCard() {
         <Image
           src={cat}
           alt="Cat Paw"
-          className="absolute bottom-0 left-6 w-[150px]"
+          className="absolute -bottom-5 left-6 w-[150px]"
         />
       </motion.div>
     )}
@@ -249,5 +260,6 @@ export default function QuizCard() {
 )}
       {/* NAV BUTTONS */}
     </div>
+  </div>
   );
 }
