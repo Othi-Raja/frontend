@@ -62,7 +62,7 @@ export default function QuizCard() {
   };
   // Next Question
   const next = () => {
-    // if (!selected[index]) return;  
+    if (!selected[index]) return;  
     if (index < questions.length - 1) {
       setIndex(index + 1);
     }
@@ -120,7 +120,7 @@ export default function QuizCard() {
   className="
     flex-1 
     h-0.5
-    bg-[#E4F3FB] 
+    bg-[#E3E3E3] 
     rounded-full 
     flex items-center
   "
@@ -169,7 +169,6 @@ export default function QuizCard() {
     ${
       index > 0
         ? `
-          text-[#124E70]
           border-[#96E5FF]
           bg-[linear-gradient(-89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
         `
@@ -193,7 +192,6 @@ export default function QuizCard() {
          <button
   onClick={next}
   className={`w-10 h-10   cursor-pointer flex items-center justify-center rounded-[10px] border transition-all duration-300
-          text-[#124E70]
           border-[#96E5FF]
           bg-[linear-gradient(89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
   `}
@@ -201,14 +199,25 @@ export default function QuizCard() {
                       <Image src={forwardArrow} alt="back"  className="w-5 h-auto"/>
 </button>
           ) : (
-      <button
+     <button
   onClick={submitQuiz}
   className={`
     px-6 py-2 cursor-pointer rounded-xl font-semibold transition-all duration-300
+    ${
+      selected[index]
+        ? `
           text-[#15313D]
           border border-[#96E5FF]
           bg-[linear-gradient(89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
+        `
+        : `
+          text-white
+          bg-gray-300 
+          cursor-not-allowed
+        `
+    }
   `}
+  disabled={!selected[index]}
 >
   Submit
 </button>
