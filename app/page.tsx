@@ -1,4 +1,4 @@
-import MainCard from "./Components/MainCard";
+// import MainCard from "./Components/MainCard";
 import QuizCard from "./Components/QuizCard";
 export default function Home() {
   return (

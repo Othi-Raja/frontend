@@ -22,7 +22,7 @@ export default function MainCard() {
     tracking-[-4px]
     text-center
     inline-block
-    bg-gradient-to-r from-[#15313D] to-[#3CABDA]
+    bg-linear-to-r from-[#15313D] to-[#3CABDA]
     text-transparent bg-clip-text
   "
 >
