@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import cat from "../asserts/cat_Hand.gif";
+import cat from "../assets/cat_Hand.gif";
 import ResultLoader from "./ResultLoader";
 import FinalScore from "./FinalScore";
-import forwardArrow from '../asserts/arrow_forward.png'
-import backArrow from '../asserts/arrow_back.png'
+import forwardArrow from '../assets/arrow_forward.png'
+import backArrow from '../assets/arrow_back.png'
 import QuestionCard from "./QuestionCard";
-import bestOfLuck from '../asserts/Group.png'
+import bestOfLuck from '../assets/Group.png'
 import '../globals.css'
 import { AnimatePresence,motion } from "framer-motion";
 const questions = [
