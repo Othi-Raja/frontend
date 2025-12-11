@@ -25,6 +25,10 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 - **Manrope** (for body text)
 - **Inter** (for UI elements)
 ---
+### Performance Data
+
+<img width="966" height="758" alt="image" src="https://github.com/user-attachments/assets/14c2a031-c50d-478c-afd1-40a7461288b0" />
+
 ## ✨ Key Features Implemented
 ### ✔ **1. Smooth UI Animations (Framer Motion)**
 - Fade-in / fade-out transitions across screens  
