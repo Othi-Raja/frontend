@@ -19,7 +19,7 @@ export default function QuestionCard({
       {/* QUESTION BOX */}
       <div
         className="
-          w-full rounded-[10px] py-3 mb-3 px-6 text-center
+          w-full rounded-[10px] py-3 mb-3 px-6 text-center font-semibold
           font-medium text-[#15313D]  
           border border-[#96E5FF]
             [font-family:var(--font-inter)] 
