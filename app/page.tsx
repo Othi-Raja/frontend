@@ -6,7 +6,6 @@ export default function Home() {
   {/* MAIN CARD  */}
 <div
   className="w-[90%] max-w-[1600px] h-[90vh]
-      overflow-hidden
          rounded-[50px]
          border-[0.72px] border-white
          bg-[linear-gradient(112.86deg,rgba(255,255,255,0.4)_-6.68%,rgba(255,255,255,0.12)_45.63%,rgba(255,255,255,0.4)_103.45%)]

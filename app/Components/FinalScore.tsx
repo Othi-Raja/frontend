@@ -1,17 +1,69 @@
+"use client";
+import { motion, animate } from "framer-motion";
+import { useEffect, useState } from "react";
 export default function FinalScore({ score }: { score: number }) {
+  const [displayScore, setDisplayScore] = useState(0);
+  useEffect(() => {
+    const controls = animate(0, score, {
+      duration: 1.5,
+      ease: "easeOut",
+      onUpdate: (v) => setDisplayScore(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [score]);
   return (
-    <div className="flex flex-col items-center justify-center py-20">
-      <p className="font-var(--font-dm-serif) italic text-[28px] text-[#15313D]">
+    <motion.div
+      initial={{ scale: 0.6, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+       className="
+    fixed inset-0
+    bg-white
+    flex flex-col items-center justify-center
+    z-[9999]
+  "
+    >
+      {/* Top Tag */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.4 }}
+        className="mb-6 px-6 py-2 bg-white text-[#15313D] rounded-xl"
+      >
+        Keep Learning!
+      </motion.div>
+      {/* Title */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="font-var(--font-dm-serif) italic text-[32px] text-[#15313D]"
+      >
         Your Final score is
-      </p>
-
-      <p className="text-[64px] font-var(--font-dm-serif) text-[#15313D]">
-        {score}%
-      </p>
-
-      <button className="mt-6 px-4 py-2 bg-[#E4F3FB] rounded-lg text-[#124E70]">
+      </motion.p>
+      {/* Animated Score */}
+      <motion.p
+        initial={{ opacity: 0, scale: 0.7 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.7, duration: 0.5 }}
+        className="text-[96px] font-var(--font-dm-serif) text-[#15313D]"
+      >
+        {displayScore}%
+      </motion.p>
+      {/* Button */}
+      <motion.button
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+        className="
+          mt-10 px-6 py-3 text-lg 
+          bg-[linear-gradient(89deg,#C6E9F7_0%,#E5F8FF_100%)] 
+          rounded-xl text-[#124E70] shadow
+        "
+        onClick={() => window.location.reload()}
+      >
         Start Again
-      </button>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 }

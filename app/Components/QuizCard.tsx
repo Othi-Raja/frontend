@@ -4,7 +4,11 @@ import Image from "next/image";
 import cat from "../asserts/cat_Hand.gif";
 import ResultLoader from "./ResultLoader";
 import FinalScore from "./FinalScore";
+import forwardArrow from '../asserts/arrow_forward.png'
+import backArrow from '../asserts/arrow_back.png'
 import QuestionCard from "./QuestionCard";
+import bestOfLuck from '../asserts/Group.png'
+import { AnimatePresence,motion } from "framer-motion";
 const questions = [
   {
     q: "1. What sound does a cat make?",
@@ -73,16 +77,15 @@ export default function QuizCard() {
       if (val === questions[i].correct) sc += 25;
     });
     setScore(sc);
-    setIsLoading(true);
-    setTimeout(() => {
       setIsLoading(false);
       setSubmitted(true);
-    }, 1000);
   };
   return (
-    <div className="relative bg-[#F4FDFF] rounded-[42px] p-10 border border-[#B3D9FF]/60 shadow-lg overflow-hidden">
-      {/* TITLE */}
+    <div className="relative bg-[#F4FDFF] rounded-[42px] p-5 border border-[#B3D9FF]/60 shadow-lg">
+  {!submitted && <div>
+        {/* TITLE */}
       <h1 className="
+      font-[90px]
         font-var(--font-dm-serif) italic
         text-[60px] tracking-[-4px] text-center
         bg-linear-to-r from-[#15313D] to-[#3CABDA]
@@ -91,7 +94,7 @@ export default function QuizCard() {
         Test Your Knowledge
       </h1>
       {/* SUBTITLE */}
-      <p className="font-var(--font-manrope) text-[16px] text-center text-[#15313D] mb-6">
+      <p className="font-var(--font-manrope) text-[17px] text-center text-[#15313D] mb-12">
         Answer all questions to see your results
       </p>
       {/* STATUS BAR */}
@@ -101,28 +104,35 @@ export default function QuizCard() {
     const isFilled = i < index;              // completely filled segments
     const isCurrent = i === index;           // the active segment user is on
     return (
-      <div
-        key={i}
-        className={`flex-1 ${isFilled ? 'h-2': 'h-1'} bg-[#E4F3FB] rounded-full overflow-hidden`}
-      >
-        <div
-          className={`
-            h-full transition-all duration-300 w-full
-            ${isFilled ? "bg-[#15313D] w-full" : ""}
-            ${isCurrent ? "bg-[#15313D] w-[0%]" : ""}
-          `}
-        />
-      </div>
+    <div
+  key={i}
+  className="
+    flex-1 
+    h-2 
+    bg-[#E4F3FB] 
+    rounded-full 
+    flex items-center
+  "
+>
+  <div
+    className={`
+      h-2 rounded-full transition-all duration-300 
+      ${isFilled ? "bg-[#15313D] w-full" : ""}
+      ${isCurrent ? "bg-[#15313D] w-[90%]" : ""}
+    `}
+  />
+</div>
     );
   })}
 </div>
+  </div>}
       {/* SCREEN LOGIC */}
       {isLoading ? (
         <ResultLoader />
       ) : submitted ? (
         <FinalScore score={score} />
       ) : (
-        <div>
+        <div className="grid w-2/4 mx-auto mb-18">
             <QuestionCard
               question={questions[index].q}
               options={questions[index].opts}
@@ -130,47 +140,113 @@ export default function QuizCard() {
               chooseOption={chooseOption}
             />
       {!isLoading && !submitted && (
-        <div className=" bottom-8 right-8 flex gap-3">
+        <div 
+         className="
+        relative
+        flex
+        mt-4
+        justify-end
+       gap-3"
+        >
           {/* Previous */}
-          {index > 0 && index < questions.length - 1 && (
-            <button
-              onClick={prev}
-              className="w-10 h-10 flex items-center justify-center bg-[#F0FBFF] border border-[#CFE6F8] rounded-full"
-            >
-              ←
-            </button>
+          {  index < questions.length - 1 && (
+         <button
+  onClick={prev}
+  disabled={index === 0}
+  className={`
+    cursor-pointer w-10 h-10 flex items-center justify-center rounded-[10px] border transition-all duration-300 ease-out
+    ${
+      index > 0
+        ? `
+          text-[#124E70]
+          border-[#96E5FF]
+          bg-[linear-gradient(-89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
+        `
+        : `
+          bg-[#F0FBFF]
+          border-[#CFE6F8]
+          opacity-50 cursor-not-allowed
+        `
+    }
+  `}
+>
+  <Image
+    src={backArrow}
+    alt="back arrow"
+    className="w-5 h-auto"
+  />
+</button>
           )}
           {/* Next or Submit */}
           {index < questions.length - 1 ? (
-            <button
-              onClick={next}
-              className={`w-10 h-10 flex items-center justify-center rounded-full
-                ${selected[index]
-                  ? "bg-[#3CABDA] text-white border-[#3CABDA]"
-                  : "bg-[#F0FBFF] border border-[#CFE6F8]"
-                }`}
-            >
-              →
-            </button>
+         <button
+  onClick={next}
+  className={`w-10 h-10   cursor-pointer flex items-center justify-center rounded-[10px] border transition-all duration-300
+          text-[#124E70]
+          border-[#96E5FF]
+          bg-[linear-gradient(89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
+  `}
+>
+                      <Image src={forwardArrow} alt="back"  className="w-5 h-auto"/>
+</button>
           ) : (
-            <button
-              onClick={submitQuiz}
-              disabled={!selected[index]}
-              className={`px-5 py-2 rounded-xl text-white font-semibold
-                ${selected[index] ? "bg-[#3CABDA]" : "bg-gray-300 cursor-not-allowed"}
-              `}
-            >
-              Submit
-            </button>
+      <button
+  onClick={submitQuiz}
+  className={`
+    px-6 py-2 cursor-pointer rounded-xl font-semibold transition-all duration-300
+    ${
+      selected[index]
+        ? `
+          text-[#124E70]
+          border border-[#96E5FF]
+          bg-[linear-gradient(89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
+        `
+        : `
+          text-white
+          bg-gray-300 cursor-not-allowed
+        `
+    }
+  `}
+>
+  Submit
+</button>
           )}
         </div>
       )}
         </div>
       )}
-      {/* CAT IMAGE bottom-left */}
-      {!submitted && (
-        <Image src={cat} alt="Cat Paw" className="absolute bottom-0 left-6 w-[120px]" />
-      )}
+{!submitted && (
+  <AnimatePresence >
+    {index === 0 && (
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative p-0"
+      >
+        {/* BEST OF LUCK BUBBLE */}
+        <Image
+          src={bestOfLuck}
+          alt="Best of Luck"
+          className="
+            absolute
+            bottom-32
+            -left-24
+            w-[160px]
+            pointer-events-none
+          "
+        />
+        {/* CAT PAW */}
+        <Image
+          src={cat}
+          alt="Cat Paw"
+          className="absolute bottom-0 left-6 w-[150px]"
+        />
+      </motion.div>
+    )}
+  </AnimatePresence>
+)}
       {/* NAV BUTTONS */}
     </div>
   );
