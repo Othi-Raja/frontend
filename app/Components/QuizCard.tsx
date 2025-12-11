@@ -127,7 +127,7 @@ export default function QuizCard() {
 >
   <div
     className={`
-      h-2 rounded-full transition-all duration-300 
+      h-1.5 rounded-full transition-all duration-300 
       ${isFilled ? "bg-[#15313D] w-full" : ""}
       ${isCurrent ? "bg-[#15313D] w-[85%]" : ""}
     `}

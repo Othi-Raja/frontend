@@ -22,6 +22,7 @@ export default function QuestionCard({
           w-full rounded-[10px] py-3 mb-3 px-6 text-center
           font-medium text-[#15313D]  
           border border-[#96E5FF]
+            [font-family:var(--font-inter)] 
           bg-[linear-gradient(89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
         "
       >
@@ -34,7 +35,7 @@ export default function QuestionCard({
             key={opt.id}
             onClick={() => chooseOption(opt.id)}
             className={`
-              w-full py-3 rounded-xl border font-semibold transition-all duration-300 ease-out         text-[#15313D]
+              w-full py-3 rounded-xl border font-semibold transition-all duration-300 ease-out        [font-family:var(--font-inter)]        text-[#15313D]
               ${
                 selected === opt.id
                   ? `
