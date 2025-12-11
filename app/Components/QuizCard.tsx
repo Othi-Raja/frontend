@@ -62,7 +62,7 @@ export default function QuizCard() {
   };
   // Next Question
   const next = () => {
-    if (!selected[index]) return;  
+    // if (!selected[index]) return;  
     if (index < questions.length - 1) {
       setIndex(index + 1);
     }
@@ -119,7 +119,7 @@ export default function QuizCard() {
   key={i}
   className="
     flex-1 
-    h-2 
+    h-0.5
     bg-[#E4F3FB] 
     rounded-full 
     flex items-center
@@ -129,7 +129,7 @@ export default function QuizCard() {
     className={`
       h-2 rounded-full transition-all duration-300 
       ${isFilled ? "bg-[#15313D] w-full" : ""}
-      ${isCurrent ? "bg-[#15313D] w-[90%]" : ""}
+      ${isCurrent ? "bg-[#15313D] w-[85%]" : ""}
     `}
   />
 </div>
@@ -205,18 +205,9 @@ export default function QuizCard() {
   onClick={submitQuiz}
   className={`
     px-6 py-2 cursor-pointer rounded-xl font-semibold transition-all duration-300
-    ${
-      selected[index]
-        ? `
-          text-[#124E70]
+          text-[#15313D]
           border border-[#96E5FF]
           bg-[linear-gradient(89.72deg,#C6E9F7_0.09%,#E5F8FF_99.91%)]
-        `
-        : `
-          text-white
-          bg-gray-300 cursor-not-allowed
-        `
-    }
   `}
 >
   Submit
